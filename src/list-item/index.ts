@@ -8,4 +8,9 @@ export interface Schema {
   title: string
 }
 
+/**
+ * Validate an object
+ * @param {object} - Object to validate
+ * @return {Boolean} - Whether or not the object passes validation
+ */
 export const isValid = ajv.compile(schema)
