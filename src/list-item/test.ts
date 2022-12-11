@@ -1,4 +1,4 @@
-const { isValid } = require('./index.ts')
+import { create, isValid } from './index'
 
 describe('isValid', () => {
   test('Full object validates', () => {
@@ -25,3 +25,18 @@ describe('isValid', () => {
     expect(isValid({ title: true })).toBe(false)
   })
 })
+
+describe('create', () => {
+  test('Empty call creates full object', () => {
+    const newLi = create()
+    expect(typeof newLi.id).toBe('string')
+    expect(newLi.title).toBe('')
+  })
+
+  test('Title can be passed', () => {
+    const newLi = create('Mow the lawn')
+    expect(typeof newLi.id).toBe('string')
+    expect(newLi.title).toBe('Mow the lawn')
+  })
+})
+
