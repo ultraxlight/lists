@@ -39,4 +39,3 @@ describe('create', () => {
     expect(newLi.title).toBe('Mow the lawn')
   })
 })
-

@@ -1,6 +1,5 @@
-import Ajv from 'ajv'
-import {v4 as uuid} from 'uuid'
-import schema from './schema.json'
+import Ajv from 'https://esm.sh/ajv@8.6.1'
+import schema from './schema.json' assert { type: 'json' }
 
 const ajv = new Ajv()
 
@@ -16,12 +15,12 @@ export interface Schema {
  */
 export const isValid = ajv.compile(schema)
 
-/**
- * Create List Item
- * @param {string} title Main List Item content
- * @returns {Schema} List Item object
- */
-export const create = (title: string = ''): Schema => ({id: uuid(), title})
+// /**
+//  * Create CSV string from List Item
+//  * @param {Schema} li List Item to render
+//  * @returns {string} String of CSV representing the List Item
+//  */
+// export const renderToCsvString = (li: Schema) => `${li.id},${li.title}\n`
 
 // /**
 //  * Create HTML string from List Item
