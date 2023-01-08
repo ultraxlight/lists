@@ -1,41 +1,26 @@
-import { create, isValid } from './index'
+import { assertEquals } from 'https://deno.land/std@0.171.0/testing/asserts.ts'
+import { isValid } from './index.ts'
 
-describe('isValid', () => {
-  test('Full object validates', () => {
-    expect(isValid({ id: '0', title: 'test' })).toBe(true)
-  })
-
-  test('Empty object does not validate', () => {
-    expect(isValid({})).toBe(false)
-  })
-
-  test('Missing `id` does not validate', () => {
-    expect(isValid({ title: 'test' })).toBe(false)
-  })
-
-  test('Missing `title` does not validate', () => {
-    expect(isValid({ id: 'test' })).toBe(false)
-  })
-
-  test('Incorrect `id` type does not validate', () => {
-    expect(isValid({ id: 4 })).toBe(false)
-  })
-
-  test('Incorrect `title` type does not validate', () => {
-    expect(isValid({ title: true })).toBe(false)
-  })
+Deno.test('Full object validates', () => {
+  assertEquals(isValid({ id: '0', title: 'Deno.test' }), true)
 })
 
-describe('create', () => {
-  test('Empty call creates full object', () => {
-    const newLi = create()
-    expect(typeof newLi.id).toBe('string')
-    expect(newLi.title).toBe('')
-  })
+Deno.test('Empty object does not validate', () => {
+  assertEquals(isValid({}), false)
+})
 
-  test('Title can be passed', () => {
-    const newLi = create('Mow the lawn')
-    expect(typeof newLi.id).toBe('string')
-    expect(newLi.title).toBe('Mow the lawn')
-  })
+Deno.test('Missing `id` does not validate', () => {
+  assertEquals(isValid({ title: 'Deno.test' }), false)
+})
+
+Deno.test('Missing `title` does not validate', () => {
+  assertEquals(isValid({ id: 'Deno.test' }), false)
+})
+
+Deno.test('Incorrect `id` type does not validate', () => {
+  assertEquals(isValid({ id: 4 }), false)
+})
+
+Deno.test('Incorrect `title` type does not validate', () => {
+  assertEquals(isValid({ title: true }), false)
 })
