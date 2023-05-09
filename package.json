@@ -5,7 +5,8 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "Deno test",
+    "test": "deno test",
+    "test:coverage": "rm -r coverage && npm test --  --coverage=coverage && Deno coverage coverage ",
     "prepare": "husky install"
   },
   "repository": {
