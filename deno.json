@@ -1,0 +1,11 @@
+{
+  "fmt": {
+    "options": {
+      "semiColons": false,
+      "singleQuote": true
+    }
+  },
+  "tasks": {
+    "example": "deno run --allow-read --allow-net ./src/index.js -s ./storage/local-storage.ts"
+  }
+}
