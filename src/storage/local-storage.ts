@@ -5,7 +5,7 @@ import type { Schema } from '../list-item/index.ts'
  * @param {string} title Main List Item content
  * @returns {Schema} List Item object
  */
-export const create = (title: string = ''): Schema => {
+export const create = (title = ''): Schema => {
   const listItem = { id: crypto.randomUUID(), title }
 
   localStorage.setItem(listItem.id, JSON.stringify(listItem))
