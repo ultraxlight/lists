@@ -1,7 +1,6 @@
 import { Command } from 'https://esm.sh/commander'
 
 const program = new Command()
-import { create, get } from './list-item/engine.ts'
 
 program
   .name('listItem')
@@ -13,7 +12,7 @@ program
   .command('create')
   .description('Create a list item')
   .argument('<string>', 'Title of list item')
-  .action(async (str, options) => {
+  .action(async (str) => {
     const opts = program.opts()
     const storage = await import(opts.storage)
 
@@ -24,7 +23,7 @@ program
   .command('list')
   .description('List all items')
   .argument('[string]', 'ID of list item')
-  .action(async (str, options) => {
+  .action(async (str) => {
     const opts = program.opts()
     const storage = await import(opts.storage)
 
