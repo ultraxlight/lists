@@ -3,7 +3,7 @@
 Run
 
 ```
-deno task example
+deno task start
 ```
 
 for full list of commands and options

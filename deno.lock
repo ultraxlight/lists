@@ -259,6 +259,7 @@
     "https://esm.sh/v119/fast-deep-equal@3.1.3/deno/fast-deep-equal.mjs": "64f660f95839c8707928b30f235061c623f279ba4ad4b4e739c767e84478e446",
     "https://esm.sh/v119/json-schema-traverse@1.0.0/deno/json-schema-traverse.mjs": "8efd283bc9e47460b1629905d2666102312334a073cd3ebbff19bc4ac88a0341",
     "https://esm.sh/v119/uri-js@4.4.1/deno/uri-js.mjs": "7b886b08ee81e016ce2f4d4c9e4e9759cf2c4a5d0539c4e6da14b3364312a95a",
-    "https://esm.sh/v119/uri-js@4.4.1/dist/es5/uri.all.d.ts": "9f3c5498245c38c9016a369795ec5ef1768d09db63643c8dba9656e5ab294825"
+    "https://esm.sh/v119/uri-js@4.4.1/dist/es5/uri.all.d.ts": "9f3c5498245c38c9016a369795ec5ef1768d09db63643c8dba9656e5ab294825",
+    "https://raw.githubusercontent.com/ultraxlight/storage/main/src/local-storage.ts": "0359b245a7f1f221e6f69af8a5d8dde7338e05d9f664fd2aad239a6be55df5a2"
   }
 }

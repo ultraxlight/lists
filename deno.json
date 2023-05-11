@@ -6,6 +6,6 @@
     }
   },
   "tasks": {
-    "example": "deno run --allow-read --allow-net ./src/index.js -s ./storage/local-storage.ts"
+    "start": "deno run --allow-read --allow-net ./src/index.js -s https://raw.githubusercontent.com/ultraxlight/storage/main/src/local-storage.ts"
   }
 }
