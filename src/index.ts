@@ -1,5 +1,11 @@
-import { Command } from 'https://esm.sh/commander'
+import { Command } from 'https://esm.sh/commander@10.0.1'
 import { renderToString } from './list-item/index.ts'
+import {
+  Create,
+  Get,
+  Remove,
+  RemoveAll,
+} from 'https://denopkg.com/ultraxlight/storage@main/src/types.ts'
 
 const program = new Command()
 
@@ -15,7 +21,7 @@ program
   .argument('<string>', 'Title of list item')
   .action(async (str) => {
     const opts = program.opts()
-    const storage = await import(opts.storage)
+    const storage: { create: Create } = await import(opts.storage)
 
     console.log(storage.create(str))
   })
@@ -26,7 +32,7 @@ program
   .argument('<string>', 'ID of list item')
   .action(async (str) => {
     const opts = program.opts()
-    const storage = await import(opts.storage)
+    const storage: { remove: Remove } = await import(opts.storage)
 
     console.log(storage)
 
@@ -38,7 +44,9 @@ program
   .description('Remove all list items')
   .action(async () => {
     const opts = program.opts()
-    const storage = await import(opts.storage)
+    const storage: { get: Get; removeAll: RemoveAll } = await import(
+      opts.storage
+    )
 
     storage.removeAll()
     console.log(storage.get())
@@ -51,7 +59,7 @@ program
   .option('-f, --format <md|json>', 'Output Format')
   .action(async (str, options) => {
     const opts = program.opts()
-    const storage = await import(opts.storage)
+    const storage: { get: Get } = await import(opts.storage)
 
     if (options.format && options.format === 'json') {
       console.log(storage.get(str))

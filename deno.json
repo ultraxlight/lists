@@ -6,6 +6,6 @@
     }
   },
   "tasks": {
-    "start": "deno run --allow-read --allow-net ./src/index.js -s https://denopkg.com/ultraxlight/storage@main/src/local-storage.ts"
+    "start": "deno run --allow-read --allow-net ./src/index.ts -s https://denopkg.com/ultraxlight/storage@main/src/local-storage.ts"
   }
 }
