@@ -61,10 +61,16 @@ program
     const opts = program.opts()
     const storage: { get: Get } = await import(opts.storage)
 
+    const result = storage.get(str)
+
     if (options.format && options.format === 'json') {
-      console.log(storage.get(str))
+      console.log(result)
     } else {
-      console.log(storage.get(str).map(renderToString).join('\n'))
+      const resultArr = ((Array.isArray(result) && result) || [result]).filter(
+        Boolean
+      )
+
+      console.log(resultArr.map(renderToString).join('\n'))
     }
   })
 
