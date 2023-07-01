@@ -29,12 +29,12 @@ export const isValid = ajv.compile(schema)
 //  */
 // export const renderToHtmlString = (li: Schema) => `<li title="${li.title}">${li.title}</li>`
 
-// /**
-//  * Create string from List Item
-//  * @param {Schema} li List Item to render
-//  * @returns {string} String representing the List Item
-//  */
-//  export const renderToString = (li: Schema) => `* ${li.title}`
+/**
+ * Create string from List Item
+ * @param {Schema} li List Item to render
+ * @returns {string} String representing the List Item
+ */
+export const renderToString = (li: Schema) => `* ${li.title}`
 
 //  /**
 //  * Create HTML element from List Item

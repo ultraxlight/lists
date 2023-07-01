@@ -1,4 +1,5 @@
 import type { Schema } from '.'
+
 /**
  * Create List Item
  * @param {string} title Main List Item content
