@@ -1,5 +1,7 @@
 # lists
 
+There are 2 included interfaces for lists, a server and a CLI.
+
 Run
 
 ```
