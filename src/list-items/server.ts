@@ -89,7 +89,7 @@ const ROUTES: Route[] = [
   },
 ]
 
-function handler(req: Request): Response {
+export function handler(req: Request): Response {
   console.log(req.method)
 
   const matchedRoute = ROUTES.find((r) => r.path.exec(req.url))
