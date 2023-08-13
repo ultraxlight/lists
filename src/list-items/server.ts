@@ -92,10 +92,15 @@ const ROUTES: Route[] = [
 export function handler(req: Request): Response {
   console.log(req.method, req.url)
 
-  const matchedRoute = ROUTES.find((r) => r.path.exec(req.url))
+  const url = req.url.replace(
+    'https://lists-git-main-ultralight.vercel.app/api/hello',
+    ''
+  )
+
+  const matchedRoute = ROUTES.find((r) => r.path.exec(url))
 
   if (matchedRoute) {
-    const params = matchedRoute.path.exec(req.url)?.pathname.groups
+    const params = matchedRoute.path.exec(url)?.pathname.groups
     return matchedRoute.handler({ req, params })
   }
 
