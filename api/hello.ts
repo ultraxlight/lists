@@ -1,3 +1,4 @@
+#!/usr/bin/env deno run --allow-net
 import { handler } from '../src/list-items/server.ts'
 
 export default handler
