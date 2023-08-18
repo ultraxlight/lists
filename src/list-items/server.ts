@@ -1,4 +1,4 @@
-// import { serve } from 'https://deno.land/std@0.192.0/http/server.ts'
+import { serve } from 'https://deno.land/std@0.192.0/http/server.ts'
 import {
   create,
   get,
@@ -110,6 +110,6 @@ export function handler(req: Request): Response {
 }
 
 console.log('Listening on http://localhost:8000')
-// serve(handler)
+serve(handler)
 
 // export default handler
