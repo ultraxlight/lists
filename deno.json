@@ -7,7 +7,9 @@
   },
   "tasks": {
     "cli": "deno run --allow-read --allow-net ./src/index.ts -s https://denopkg.com/ultraxlight/storage@main/src/local-storage.ts",
-    "reload": "deno cache --reload ./src/index.ts",
-    "server": "deno run --allow-net src/list-items/server.ts"
+    "reload": "deno cache --reload ./src/list-items/list-item/mod.ts",
+    "server": "deno run --allow-net src/list-items/server.ts",
+    "test": "deno test",
+    "test:coverage": "rm -r coverage && deno test --  --coverage=coverage && Deno coverage coverage "
   }
 }

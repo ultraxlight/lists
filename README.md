@@ -1,6 +1,6 @@
 # lists
 
-There are 2 included interfaces for lists, a server and a CLI.
+There are 3 included interfaces for lists, a deno module, and a server and CLI powered by that module.
 
 Run
 

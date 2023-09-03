@@ -1,5 +1,5 @@
 import { assertEquals } from 'https://deno.land/std@0.171.0/testing/asserts.ts'
-import { isValid } from './index.ts'
+import { isValid } from './validation.ts'
 
 Deno.test('Full object validates', () => {
   assertEquals(isValid({ id: '0', title: 'Deno.test' }), true)
