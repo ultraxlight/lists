@@ -20,10 +20,30 @@ const addFormString = `<form method="post"><input name="title" type="text" aria-
 const html = (content: string) =>
   `<!DOCTYPE html><html lang="en"><head><title>Ultralight - Lists</title><meta name="viewport" content="width=device-width, initial-scale=1" /><meta name="description" content="Lists"></head><body>${content}</body></html>`
 
+const returnAllResponse = (items) =>
+  new Response(
+    html(
+      `<ul>${items
+        .map((item) =>
+          renderToHtmlString(item, {
+            deleteCallback: `fetch('/${item.id}', { method: 'DELETE' }).then(
+            () => window.location = '/'
+          )`,
+          })
+        )
+        .join('')}</ul>${addFormString}`
+    ),
+    {
+      headers: {
+        'content-type': 'text/html; charset=utf-8',
+      },
+    }
+  )
+
 const ROUTES: Route[] = [
   {
     path: new URLPattern({ pathname: '/:id' }),
-    handler: ({ req, params }) => {
+    handler: ({ req, params = {} }) => {
       const id = params.id
       if (id) {
         const item = get(id)
@@ -31,13 +51,25 @@ const ROUTES: Route[] = [
           // DELETE
           if (req.method === 'DELETE') {
             remove(id)
+            const items = getAll()
+            return returnAllResponse(items)
           }
           // GET
-          return new Response(html(renderToHtmlString(item, { wrap: true })), {
-            headers: {
-              'content-type': 'text/html; charset=utf-8',
-            },
-          })
+          return new Response(
+            html(
+              renderToHtmlString(item, {
+                wrap: true,
+                deleteCallback: `fetch('/${id}', { method: 'DELETE' }).then(
+                    window.location.redirect('/')
+                  )`,
+              })
+            ),
+            {
+              headers: {
+                'content-type': 'text/html; charset=utf-8',
+              },
+            }
+          )
         }
         return new Response('Not found (try /)', {
           status: 404,
@@ -60,37 +92,15 @@ const ROUTES: Route[] = [
         // return new Response(JSON.stringify(create({ title })))
         const items = getAll()
 
-        // GET ALL
-        // return new Response(JSON.stringify(items))
-        return new Response(
-          html(
-            `<ul>${items
-              .sort((a, b) => a.title - b.title)
-              .map(renderToHtmlString)
-              .join('')}</ul>${addFormString}`
-          ),
-          {
-            headers: {
-              'content-type': 'text/html; charset=utf-8',
-            },
-          }
-        )
+        // XXX Should just return the newly created item and a 201 for created
+        return returnAllResponse(items)
       }
 
       const items = getAll()
 
       // GET ALL
       // return new Response(JSON.stringify(items))
-      return new Response(
-        html(
-          `<ul>${items.map(renderToHtmlString).join('')}</ul>${addFormString}`
-        ),
-        {
-          headers: {
-            'content-type': 'text/html; charset=utf-8',
-          },
-        }
-      )
+      return returnAllResponse(items)
     },
   },
 ]
@@ -117,5 +127,3 @@ export function handler(req: Request): Response {
 
 console.log('Listening on http://localhost:8000')
 serve(handler)
-
-// export default handler
