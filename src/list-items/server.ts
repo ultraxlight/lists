@@ -16,7 +16,7 @@ type Route = {
   handler: (_: HandlerArgs) => Response
 }
 
-const addFormString = `<form method="post"><input name="title" type="text" aria-label="New Item" /><button>add</button></form>`
+const addFormString = `<form method="post"><input name="title" type="text" aria-label="New Item" minlength="1" required /><button>add</button></form>`
 const html = (content: string) =>
   `<!DOCTYPE html><html lang="en"><head><title>Ultralight - Lists</title><meta name="viewport" content="width=device-width, initial-scale=1" /><meta name="description" content="Lists"></head><body>${content}</body></html>`
 
