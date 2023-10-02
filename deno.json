@@ -10,6 +10,6 @@
     "reload": "deno cache --reload ./src/list-items/list-item/mod.ts",
     "server": "deno run --allow-net src/list-items/server.ts",
     "test": "deno test",
-    "test:coverage": "rm -r coverage && deno test --  --coverage=coverage && Deno coverage coverage "
+    "test:coverage": "rm -rf coverage && deno test --  --coverage=coverage && Deno coverage coverage "
   }
 }
