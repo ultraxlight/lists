@@ -9,12 +9,12 @@
     "https://deno.land/std@0.171.0/testing/_diff.ts": "1a3c044aedf77647d6cac86b798c6417603361b66b54c53331b312caeb447aea",
     "https://deno.land/std@0.171.0/testing/_format.ts": "a69126e8a469009adf4cf2a50af889aca364c349797e63174884a52ff75cf4c7",
     "https://deno.land/std@0.171.0/testing/asserts.ts": "984ab0bfb3faeed92ffaa3a6b06536c66811185328c5dd146257c702c41b01ab",
-    "https://denopkg.com/ultraxlight/storage@main/src/local-storage.ts": "26830e3aa0edd878418b2e54eece2772355492e9e00193edd4740d226298baba",
-    "https://denopkg.com/ultraxlight/storage@main/src/types.ts": "1f90d04fd55efa81e23bf4b8a3b0fd68bc4afb5802c93d903faebd27bddc0ea6",
-    "https://esm.sh/ajv@8.6.1": "070a6cddce7f33c4e11f20d402162f60cd6c6c2f122b28771500f4224ba4ee27",
-    "https://esm.sh/v131/ajv@8.6.1/denonext/ajv.mjs": "de0cc5a270440c98c93b8ec706a195d3457e4a4219f0268e823beef2d572a2eb",
-    "https://esm.sh/v131/fast-deep-equal@3.1.3/denonext/fast-deep-equal.mjs": "6313b3e05436550e1c0aeb2a282206b9b8d9213b4c6f247964dd7bb4835fb9e5",
-    "https://esm.sh/v131/json-schema-traverse@1.0.0/denonext/json-schema-traverse.mjs": "c5da8353bc014e49ebbb1a2c0162d29969a14c325da19644e511f96ba670cc45",
-    "https://esm.sh/v131/uri-js@4.4.1/denonext/uri-js.mjs": "901d462f9db207376b39ec603d841d87e6b9e9568ce97dfaab12aa77d0f99f74"
+    "https://denopkg.com/ultraxlight/storage@main/implementations/memory.ts": "960834fbdf02f2291176a761de1d030786959e8307010db7351ce4b7a52cbae6",
+    "https://denopkg.com/ultraxlight/storage@main/src/types.ts": "31d9f1828e08894686542f14a813f914f25027c2d4ce3730da4bddfca11c4316",
+    "https://esm.sh/ajv@8.6.1": "7aeb7973d277a344d0413e9a778ce0d573ab173fd7008c8f97d11089f7f73974",
+    "https://esm.sh/v132/ajv@8.6.1/denonext/ajv.mjs": "1acd66542e2a5345bc5f66591ec9674baf0333f9bab22e045ca1cd518b1a273c",
+    "https://esm.sh/v132/fast-deep-equal@3.1.3/denonext/fast-deep-equal.mjs": "6313b3e05436550e1c0aeb2a282206b9b8d9213b4c6f247964dd7bb4835fb9e5",
+    "https://esm.sh/v132/json-schema-traverse@1.0.0/denonext/json-schema-traverse.mjs": "c5da8353bc014e49ebbb1a2c0162d29969a14c325da19644e511f96ba670cc45",
+    "https://esm.sh/v132/uri-js@4.4.1/denonext/uri-js.mjs": "901d462f9db207376b39ec603d841d87e6b9e9568ce97dfaab12aa77d0f99f74"
   }
 }

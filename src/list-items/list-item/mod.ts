@@ -1,4 +1,4 @@
-import Storage from 'https://denopkg.com/ultraxlight/storage@main/implementations/local-storage.ts'
+import Storage from 'https://denopkg.com/ultraxlight/storage@main/implementations/memory.ts'
 import {ListItem as ListItemType} from './types.ts'
 
 const ListItem = {
