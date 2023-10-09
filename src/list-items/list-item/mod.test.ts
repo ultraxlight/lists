@@ -1,73 +1,76 @@
 import {
   assertEquals,
-  assertThrows,
+  assertRejects,
 } from 'https://deno.land/std@0.168.0/testing/asserts.ts'
 import ListItem from './mod.ts'
+import memoryStorage from 'https://denopkg.com/ultraxlight/storage@0.1.3/implementations/memory.ts'
 
-Deno.test('Empty create call throws error', () => {
-  // @ts-ignore This is meant to be called incorrectly
-  assertThrows(() => ListItem.create(), Error, 'Missing title')
-})
+Deno.test('ListItem', async (t) => {
+  const li = await ListItem(memoryStorage)
 
-Deno.test('Create returns an object with a title', () => {
-  const newItem = ListItem.create('Mow the lawn')
-  assertEquals(typeof newItem.id, 'string')
-  assertEquals(newItem.title, 'Mow the lawn')
-})
+  await t.step('Empty create call throws error', () => {
+    // @ts-ignore This is meant to be called incorrectly
+    assertRejects(async () => await li.create())
+  })
 
-Deno.test('Get can retrieve single', () => {
-  const newItem = ListItem.create('Mow the lawn')
-  const retrievedItem = ListItem.get(newItem.id)
-  assertEquals(
-    newItem.id,
-    retrievedItem && !Array.isArray(retrievedItem) && retrievedItem.id
-  )
-  assertEquals(
-    newItem.title,
-    retrievedItem && !Array.isArray(retrievedItem) && retrievedItem.title
-  )
-})
+  await t.step('Create returns an object with a title', async () => {
+    const newItem = await li.create('Mow the lawn')
+    assertEquals(typeof newItem.id, 'string')
+    assertEquals(newItem.title, 'Mow the lawn')
+  })
 
-Deno.test('GetAll can retrieve multiple', () => {
-  const newLi1 = ListItem.create('Mow the lawn')
-  const newLi2 = ListItem.create('Mow the lawn 2')
-  const retrievedLis = ListItem.getAll()
-  const retrievedLi1 =
-    Array.isArray(retrievedLis) &&
-    retrievedLis.find((rLi) => rLi.id === newLi1.id)
-  const retrievedLi2 =
-    Array.isArray(retrievedLis) &&
-    retrievedLis.find((rLi) => rLi.id === newLi2.id)
+  await t.step('Get can retrieve single', async () => {
+    const newItem = await li.create('Mow the lawn')
+    const retrievedItem = await li.get(newItem.id)
+    assertEquals(
+      newItem.id,
+      retrievedItem && !Array.isArray(retrievedItem) && retrievedItem.id,
+    )
+    assertEquals(
+      newItem.title,
+      retrievedItem && !Array.isArray(retrievedItem) && retrievedItem.title,
+    )
+  })
 
-  assertEquals(
-    newLi1.id,
-    retrievedLi1 && !Array.isArray(retrievedLi1) && retrievedLi1.id
-  )
-  assertEquals(
-    newLi2.title,
-    retrievedLi2 && !Array.isArray(retrievedLi2) && retrievedLi2.title
-  )
-})
+  await t.step('GetAll can retrieve multiple', async () => {
+    const newLi1 = await li.create('Mow the lawn')
+    const newLi2 = await li.create('Mow the lawn 2')
+    const retrievedLis = await li.getAll()
+    const retrievedLi1 = Array.isArray(retrievedLis) &&
+      retrievedLis.find((rLi) => rLi.id === newLi1.id)
+    const retrievedLi2 = Array.isArray(retrievedLis) &&
+      retrievedLis.find((rLi) => rLi.id === newLi2.id)
 
-Deno.test('remove removes', () => {
-  const newItem = ListItem.create('Mow the lawn')
-  const retrievedItemBeforeRemove = ListItem.get(newItem.id)
+    assertEquals(
+      newLi1.id,
+      retrievedLi1 && !Array.isArray(retrievedLi1) && retrievedLi1.id,
+    )
+    assertEquals(
+      newLi2.title,
+      retrievedLi2 && !Array.isArray(retrievedLi2) && retrievedLi2.title,
+    )
+  })
 
-  assertEquals(
-    !Array.isArray(retrievedItemBeforeRemove) &&
-      retrievedItemBeforeRemove?.title,
-    'Mow the lawn'
-  )
+  await t.step('remove removes', async () => {
+    const newItem = await li.create('Mow the lawn')
+    const retrievedItemBeforeRemove = await li.get(newItem.id)
 
-  ListItem.remove(newItem.id)
+    assertEquals(
+      !Array.isArray(retrievedItemBeforeRemove) &&
+        retrievedItemBeforeRemove?.title,
+      'Mow the lawn',
+    )
 
-  assertEquals(ListItem.get(newItem.id), null)
-})
+    li.remove(newItem.id)
 
-Deno.test('remove returns removed', () => {
-  const newItem = ListItem.create('Mow the lawn')
-  const removedItem = ListItem.remove(newItem.id)
+    assertEquals(await li.get(newItem.id), null)
+  })
 
-  // @ts-ignore: fine if this doesn't work
-  assertEquals(newItem, removedItem)
+  await t.step('remove returns removed', async () => {
+    const newItem = await li.create('Mow the lawn')
+    const removedItem = await li.remove(newItem.id)
+
+    // @ts-ignore: fine if this doesn't work
+    assertEquals(newItem, removedItem)
+  })
 })

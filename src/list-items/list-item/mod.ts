@@ -1,37 +1,39 @@
-import Storage from 'https://denopkg.com/ultraxlight/storage@main/implementations/memory.ts'
-import {ListItem as ListItemType} from './types.ts'
+import StorageType from 'https://denopkg.com/ultraxlight/storage@0.1.3/src/types.ts'
+import { ListItem as ListItemType } from './types.ts'
 
-const ListItem = {
-  create: (title: string) => {
-    if (!title) {
-      throw new TypeError('Missing title')
-    }
+function ListItem(Storage: StorageType) {
+  return {
+    create: (title: string) => {
+      if (!title) {
+        return Promise.reject('Missing title')
+      }
 
-    return Storage.create<ListItemType>({ title })
-  },
-  get: (id: string) => {
-    if (!id) {
-      throw new TypeError('Missing ID')
-    }
+      return Storage.create<ListItemType>({ title })
+    },
+    get: (id: string) => {
+      if (!id) {
+        throw new TypeError('Missing ID')
+      }
 
-    return Storage.get<ListItemType>(id)
-  },
-  getAll: () => {
-    return Storage.getAll<ListItemType>()
-  },
-  update: (id: string, updateObj: Partial<ListItemType>) => {
-    if (!id) {
-      throw new TypeError('Missing ID')
-    }
+      return Storage.get<ListItemType>(id)
+    },
+    getAll: () => {
+      return Storage.getAll<ListItemType>()
+    },
+    update: (id: string, updateObj: Partial<ListItemType>) => {
+      if (!id) {
+        throw new TypeError('Missing ID')
+      }
 
-    return Storage.update<ListItemType>(id, updateObj)
-  },
-  remove: (id: string) => {
-    if (!id) {
-      throw new TypeError('Missing ID')
-    }
+      return Storage.update<ListItemType>(id, updateObj)
+    },
+    remove: (id: string) => {
+      if (!id) {
+        throw new TypeError('Missing ID')
+      }
 
-    return Storage.remove<ListItemType>(id)
-  },
+      return Storage.remove<ListItemType>(id)
+    },
+  }
 }
 export default ListItem
