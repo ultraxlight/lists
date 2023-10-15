@@ -1,6 +1,7 @@
 import StorageType from 'https://denopkg.com/ultraxlight/storage@0.1.3/src/types.ts'
 import { ListItem as ListItemType } from './types.ts'
 
+/** Basic ListItem functionality */
 function ListItem(Storage: StorageType) {
   return {
     create: (title: string) => {
@@ -23,6 +24,10 @@ function ListItem(Storage: StorageType) {
     update: (id: string, updateObj: Partial<ListItemType>) => {
       if (!id) {
         throw new TypeError('Missing ID')
+      }
+
+      if (typeof id !== 'string') {
+        throw new TypeError('ID should be string')
       }
 
       return Storage.update<ListItemType>(id, updateObj)

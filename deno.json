@@ -8,8 +8,9 @@
   "tasks": {
     "cli": "deno run --allow-read --allow-net ./src/index.ts -s https://denopkg.com/ultraxlight/storage@main/src/local-storage.ts",
     "reload": "deno cache --reload ./src/list-items/list-item/mod.ts",
-    "server": "deno run --allow-net src/list-items/server.ts",
+    "server": "deno run --allow-net src/list-items/frontend.server.ts",
     "test": "deno test",
-    "test:coverage": "rm -rf coverage && deno test --  --coverage=coverage && Deno coverage coverage "
+    "test:coverage": "rm -rf coverage && deno test --coverage=coverage && Deno coverage coverage |& ./scripts/100_coverage.ts",
+    "version-bump": "deno run -A https://deno.land/x/version_bump@1.1.0/cli.ts"
   }
 }

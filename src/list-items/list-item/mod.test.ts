@@ -6,7 +6,7 @@ import ListItem from './mod.ts'
 import memoryStorage from 'https://denopkg.com/ultraxlight/storage@0.1.3/implementations/memory.ts'
 
 Deno.test('ListItem', async (t) => {
-  const li = await ListItem(memoryStorage)
+  const li = ListItem(memoryStorage)
 
   await t.step('Empty create call throws error', () => {
     // @ts-ignore This is meant to be called incorrectly
@@ -32,6 +32,11 @@ Deno.test('ListItem', async (t) => {
     )
   })
 
+  await t.step('Get without an ID throws', () => {
+    // @ts-ignore This is meant to be called incorrectly
+    assertRejects(async () => await li.get())
+  })
+
   await t.step('GetAll can retrieve multiple', async () => {
     const newLi1 = await li.create('Mow the lawn')
     const newLi2 = await li.create('Mow the lawn 2')
@@ -51,7 +56,28 @@ Deno.test('ListItem', async (t) => {
     )
   })
 
-  await t.step('remove removes', async () => {
+  await t.step('Update updates', async () => {
+    const item = await li.create('Mow the lawn 2')
+    await li.update(item.id, { title: 'Mow the lawn 3' })
+    const retrievedLi = await li.get(item.id)
+
+    assertEquals(
+      retrievedLi?.title,
+      'Mow the lawn 3',
+    )
+  })
+
+  await t.step('Update with wrong ID type throws', () => {
+    // @ts-ignore This is meant to be called incorrectly
+    assertRejects(async () => await li.update({ title: 'name' }))
+  })
+
+  await t.step('Update without ID throws', () => {
+    // @ts-ignore This is meant to be called incorrectly
+    assertRejects(async () => await li.update())
+  })
+
+  await t.step('Remove removes', async () => {
     const newItem = await li.create('Mow the lawn')
     const retrievedItemBeforeRemove = await li.get(newItem.id)
 
@@ -64,6 +90,11 @@ Deno.test('ListItem', async (t) => {
     li.remove(newItem.id)
 
     assertEquals(await li.get(newItem.id), null)
+  })
+
+  await t.step('Remove without ID throws', () => {
+    // @ts-ignore This is meant to be called incorrectly
+    assertRejects(async () => await li.remove())
   })
 
   await t.step('remove returns removed', async () => {
