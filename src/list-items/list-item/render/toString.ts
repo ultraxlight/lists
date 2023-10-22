@@ -1,4 +1,4 @@
-import type { Schema } from '../index.ts'
+import type { ListItem } from '../types.ts'
 // /**
 //  * Create CSV string from List Item
 //  * @param {Schema} li List Item to render
@@ -16,10 +16,10 @@ import type { Schema } from '../index.ts'
 
 /**
  * Create string from List Item
- * @param {Schema} li List Item to render
+ * @param {ListItem} li List Item to render
  * @returns {string} String representing the List Item
  */
-export const renderToString = (li: Schema) => li.title
+export const renderToString = (li: ListItem) => li.title
 
 //  /**
 //  * Create HTML element from List Item

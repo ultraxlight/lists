@@ -1,9 +1,11 @@
+/* DO NOT USE */
 import { serve } from 'https://deno.land/std@0.192.0/http/server.ts'
 import {
   create,
   get,
   getAll,
   remove,
+  update,
 } from 'https://denopkg.com/ultraxlight/storage@main/src/local-storage.ts'
 import { renderToHtmlString } from './list-item/render/toHtmlString.ts'
 
@@ -16,34 +18,46 @@ type Route = {
   handler: (_: HandlerArgs) => Response
 }
 
-const addFormString = `<form method="post"><input name="title" type="text" aria-label="New Item" minlength="1" required /><button>add</button></form>`
-const html = (content: string) =>
-  `<!DOCTYPE html><html lang="en"><head><title>Ultralight - Lists</title><meta name="viewport" content="width=device-width, initial-scale=1" /><meta name="description" content="Lists"></head><body>${content}</body></html>`
+// const addFormString = `<form method="post"><input name="title" type="text" aria-label="New Item" minlength="1" required /><button>add</button></form>`
+// const html = (content: string) =>
+//   `<!DOCTYPE html><html lang="en"><head><title>Ultralight - Lists</title><meta name="viewport" content="width=device-width, initial-scale=1" /><meta name="description" content="Lists"></head><body>${content}</body></html>`
+// const getDeleteCallback = (
+//   id: string
+// ) => `fetch('/${id}', { method: 'DELETE' }).then(
+//   window.location.redirect('/')
+// )`
+// const getEditCallback = (
+//   id: string,
+//   title: string
+// ) => `fetch('/${id}?title="${title}"', { method: 'PUT' }).then(
+//   window.location.redirect('/')
+// )`
 
-const returnAllResponse = (items) =>
+// const returnAllResponse = (items) =>
+//   new Response(
+//   JSON.stringify(items),
+//     {
+//       headers: {
+//         'content-type': 'application/json; charset=utf-8',
+//       },
+//     }
+//   )
+
+const jsonResponse = (obj, opts?) =>
   new Response(
-    html(
-      `<ul>${items
-        .map((item) =>
-          renderToHtmlString(item, {
-            deleteCallback: `fetch('/${item.id}', { method: 'DELETE' }).then(
-            () => window.location = '/'
-          )`,
-          })
-        )
-        .join('')}</ul>${addFormString}`
-    ),
+    JSON.stringify(obj),
     {
       headers: {
-        'content-type': 'text/html; charset=utf-8',
+        'content-type': 'application/json; charset=utf-8',
       },
-    }
+      ...opts,
+    },
   )
 
 const ROUTES: Route[] = [
   {
     path: new URLPattern({ pathname: '/:id' }),
-    handler: ({ req, params = {} }) => {
+    handler: async ({ req, params = {} }) => {
       const id = params.id
       if (id) {
         const item = get(id)
@@ -52,24 +66,19 @@ const ROUTES: Route[] = [
           if (req.method === 'DELETE') {
             remove(id)
             const items = getAll()
-            return returnAllResponse(items)
+            return jsonResponse(items)
+          }
+          // PUT
+          if (req.method === 'PUT') {
+            const titleFD = (await req.formData()).get('title')
+            const title = new URL(req.url).searchParams.get('title') || titleFD
+            update(id, { title })
+
+            const items = getAll()
+            return jsonResponse(items)
           }
           // GET
-          return new Response(
-            html(
-              renderToHtmlString(item, {
-                wrap: true,
-                deleteCallback: `fetch('/${id}', { method: 'DELETE' }).then(
-                    window.location.redirect('/')
-                  )`,
-              })
-            ),
-            {
-              headers: {
-                'content-type': 'text/html; charset=utf-8',
-              },
-            }
-          )
+          return jsonResponse(item)
         }
         return new Response('Not found (try /)', {
           status: 404,
@@ -93,14 +102,14 @@ const ROUTES: Route[] = [
         const items = getAll()
 
         // XXX Should just return the newly created item and a 201 for created
-        return returnAllResponse(items)
+        return jsonResponse(items, { status: 201 })
       }
 
       const items = getAll()
+      console.log({ items })
 
       // GET ALL
-      // return new Response(JSON.stringify(items))
-      return returnAllResponse(items)
+      return jsonResponse(items)
     },
   },
 ]
@@ -110,7 +119,7 @@ export function handler(req: Request): Response {
 
   const url = req.url.replace(
     'https://lists-git-main-ultralight.vercel.app/api/hello',
-    ''
+    '',
   )
 
   const matchedRoute = ROUTES.find((r) => r.path.exec(url))
