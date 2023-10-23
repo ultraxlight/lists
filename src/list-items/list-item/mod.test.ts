@@ -3,7 +3,7 @@ import {
   assertRejects,
 } from 'https://deno.land/std@0.168.0/testing/asserts.ts'
 import ListItem from './mod.ts'
-import memoryStorage from 'https://denopkg.com/ultraxlight/storage@0.1.3/implementations/memory.ts'
+import memoryStorage from 'https://denopkg.com/ultraxlight/storage@0.2.0/implementations/memory.ts'
 
 Deno.test('ListItem', async (t) => {
   const li = ListItem(memoryStorage)

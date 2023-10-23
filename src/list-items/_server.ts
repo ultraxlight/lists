@@ -6,7 +6,7 @@ import {
   getAll,
   remove,
   update,
-} from 'https://denopkg.com/ultraxlight/storage@main/src/local-storage.ts'
+} from 'https://denopkg.com/ultraxlight/storage@0.2.0/src/local-storage.ts'
 import { renderToHtmlString } from './list-item/render/toHtmlString.ts'
 
 type HandlerArgs = {
