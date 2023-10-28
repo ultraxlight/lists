@@ -3,10 +3,11 @@ import {
   assertRejects,
 } from 'https://deno.land/std@0.168.0/testing/asserts.ts'
 import ListItem from './mod.ts'
-import memoryStorage from 'https://denopkg.com/ultraxlight/storage@0.2.0/implementations/memory.ts'
+import memoryStorage from 'https://denopkg.com/ultraxlight/storage@0.3.1/implementations/memory.ts'
 
 Deno.test('ListItem', async (t) => {
-  const li = ListItem(memoryStorage)
+  const db = await memoryStorage.init()
+  const li = ListItem(db)
 
   await t.step('Empty create call throws error', () => {
     // @ts-ignore This is meant to be called incorrectly

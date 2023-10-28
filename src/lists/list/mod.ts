@@ -1,4 +1,4 @@
-import StorageType from 'https://denopkg.com/ultraxlight/storage@0.2.0/src/types.ts'
+import StorageType from 'https://denopkg.com/ultraxlight/storage@0.3.1/src/types.ts'
 import { List as ListType } from './types.ts'
 
 /** Basic List functionality */
@@ -77,7 +77,7 @@ function List(Storage: StorageType) {
         throw new Error(`No List with ID ${listId} found`)
       }
 
-      const items = list.items.filter((_, idx) => idx !== itemIdx)
+      const items = list.items.filter((_: unknown, idx: number) => idx !== itemIdx)
 
       return Storage.update<ListType>(listId, { items })
     },

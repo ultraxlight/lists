@@ -1,4 +1,4 @@
-import StorageType from 'https://denopkg.com/ultraxlight/storage@0.2.0/src/types.ts'
+import StorageType from 'https://denopkg.com/ultraxlight/storage@0.3.1/src/types.ts'
 import { ListItem as ListItemType } from './types.ts'
 
 /** Basic ListItem functionality */
