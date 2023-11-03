@@ -39,10 +39,11 @@ function List(Storage: StorageType) {
 
       return Storage.remove<ListType>(id)
     },
-    addItem: async (listId: string, itemId: string, idx?: number) => {
+    addItem: async (listId: string, itemId: string) => {
       if (!listId) {
         throw new TypeError('Missing List ID')
       }
+
       if (!itemId) {
         throw new TypeError('Missing Item ID')
       }
@@ -55,20 +56,17 @@ function List(Storage: StorageType) {
 
       const items = [...list.items]
 
-      if (!isNaN(idx as number)) {
-        items.splice(idx as number, 0, itemId)
-      } else {
-        items.push(itemId)
-      }
+      items.push(itemId)
 
       return Storage.update<ListType>(listId, { items })
     },
     removeItem: async (listId: string, itemIdx: number) => {
       if (!listId) {
-        throw new TypeError('Missing List ID')
+        throw new Error('Missing List ID')
       }
-      if (!itemIdx) {
-        throw new TypeError('Missing Item index')
+
+      if (typeof itemIdx !== 'number') {
+        throw new Error('Item index must be a number')
       }
 
       const list = await Storage.get<ListType>(listId)
@@ -77,7 +75,9 @@ function List(Storage: StorageType) {
         throw new Error(`No List with ID ${listId} found`)
       }
 
-      const items = list.items.filter((_: unknown, idx: number) => idx !== itemIdx)
+      const items = list.items.filter((_: unknown, idx: number) =>
+        idx !== itemIdx
+      )
 
       return Storage.update<ListType>(listId, { items })
     },

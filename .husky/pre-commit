@@ -3,4 +3,4 @@
 
 Deno fmt
 Deno lint
-Deno test
+Deno test:coverage
