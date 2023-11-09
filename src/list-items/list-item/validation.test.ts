@@ -2,7 +2,7 @@ import { assertEquals } from 'https://deno.land/std@0.171.0/testing/asserts.ts'
 import { isValid } from './validation.ts'
 
 Deno.test('Full object validates', () => {
-  assertEquals(isValid({ id: '0', title: 'Deno.test' }), true)
+  assertEquals(isValid({ id: '0', title: 'Deno.test', is_done: false }), true)
 })
 
 Deno.test('Empty object does not validate', () => {
@@ -15,6 +15,10 @@ Deno.test('Missing `id` does not validate', () => {
 
 Deno.test('Missing `title` does not validate', () => {
   assertEquals(isValid({ id: 'Deno.test' }), false)
+})
+
+Deno.test('Missing `is_done` does not validate', () => {
+  assertEquals(isValid({ id: 'Deno.test', title: 'a' }), false)
 })
 
 Deno.test('Incorrect `id` type does not validate', () => {

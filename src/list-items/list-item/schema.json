@@ -2,8 +2,9 @@
   "type": "object",
   "properties": {
     "id": { "type": "string" },
-    "title": { "type": "string" }
+    "title": { "type": "string" },
+    "is_done": { "type": "boolean" }
   },
-  "required": ["id", "title"],
+  "required": ["id", "title", "is_done"],
   "additionalProperties": false
 }
