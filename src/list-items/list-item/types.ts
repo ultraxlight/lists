@@ -4,4 +4,6 @@ import { Item } from 'https://denopkg.com/ultraxlight/storage@0.3.1/src/types.ts
 export interface ListItem extends Item {
   /** Item title */
   title: string
+  /** Whether or not the item is marked done */
+  is_done: boolean
 }

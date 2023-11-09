@@ -4,12 +4,16 @@ import { ListItem as ListItemType } from './types.ts'
 /** Basic ListItem functionality */
 function ListItem(Storage: StorageType) {
   return {
-    create: (title: string) => {
-      if (!title) {
+    create: (item: Partial<ListItemType> & { title: string }) => {
+      if (!item || !item.title) {
         return Promise.reject('Missing title')
       }
 
-      return Storage.create<ListItemType>({ title })
+      const dflt = {
+        is_done: false,
+      }
+
+      return Storage.create<ListItemType>({ ...dflt, ...item })
     },
     get: (id: string) => {
       if (!id) {
@@ -41,4 +45,5 @@ function ListItem(Storage: StorageType) {
     },
   }
 }
+
 export default ListItem

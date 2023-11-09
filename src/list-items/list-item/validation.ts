@@ -7,6 +7,7 @@ const ajv = new Ajv()
 export interface Schema {
   id: string
   title: string
+  is_done: boolean
 }
 
 /**
