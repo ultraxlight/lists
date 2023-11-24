@@ -1,8 +1,8 @@
 import StorageType from 'https://denopkg.com/ultraxlight/storage@0.3.1/src/types.ts'
-import { List as ListType } from './types.ts'
+import { List as ListType, ListInterface } from './types.ts'
 
 /** Basic List functionality */
-function List(Storage: StorageType) {
+function List(Storage: StorageType): ListInterface {
   return {
     create: (title: string) => {
       if (!title) {

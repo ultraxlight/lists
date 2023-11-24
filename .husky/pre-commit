@@ -2,5 +2,5 @@
 . "$(dirname "$0")/_/husky.sh"
 
 Deno fmt
-Deno lint
+Deno lint ./src
 Deno test:coverage

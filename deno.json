@@ -7,6 +7,7 @@
   },
   "tasks": {
     "cli": "deno run --allow-read --allow-net ./src/index.ts -s https://denopkg.com/ultraxlight/storage@main/src/local-storage.ts",
+    "docs:build": "deno doc --html --name=\"Lists\" ./src/lists/list/mod.ts ./src/list-items/list-item/mod.ts",
     "reload": "deno cache --reload ./src/list-items/list-item/mod.ts",
     "test": "deno test",
     "test:coverage": "rm -rf coverage && deno test --coverage=coverage && Deno coverage coverage |& ./scripts/100_coverage.ts",
