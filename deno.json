@@ -14,6 +14,6 @@
     "version-bump": "deno run -A https://deno.land/x/version_bump@1.1.0/cli.ts"
   },
   "imports": {
-    "storage": "https://denopkg.com/ultraxlight/storage@0.3.0"
+    "storage/": "https://denopkg.com/ultraxlight/storage@0.3.1/"
   }
 }

@@ -1,4 +1,4 @@
-import StorageType from 'https://denopkg.com/ultraxlight/storage@0.3.1/src/types.ts'
+import StorageType from 'storage/src/types.ts'
 import { List as ListType, ListInterface } from './types.ts'
 
 /** Basic List functionality */

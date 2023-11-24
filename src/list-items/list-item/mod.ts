@@ -1,9 +1,10 @@
-import StorageType from 'https://denopkg.com/ultraxlight/storage@0.3.1/src/types.ts'
+import StorageType from 'storage/src/types.ts'
 import { ListItem as ListItemType } from './types.ts'
 
 /** Basic ListItem functionality */
 function ListItem(Storage: StorageType) {
   return {
+    /** Create list item */
     create: (item: Partial<ListItemType> & { title: string }) => {
       if (!item || !item.title) {
         return Promise.reject('Missing title')

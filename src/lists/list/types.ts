@@ -1,4 +1,4 @@
-import { Item } from 'https://denopkg.com/ultraxlight/storage@0.2.0/src/types.ts'
+import { Item } from 'storage/src/types.ts'
 
 /** List Object Type */
 export interface List extends Item {
@@ -6,4 +6,17 @@ export interface List extends Item {
   title: string
   /** Items */
   items: string[]
+}
+
+/** Interact with Lists */
+export type ListInterface = {
+  create: (title: string) => Promise<List>
+  get: (id: string) => Promise<List | null>
+  getAll: () => Promise<List[]>
+  update: (id: string, updateObj: Partial<List>) => Promise<List>
+  remove: (id: string) => Promise<List | null>
+  /** Add ListItem */
+  addItem: (listId: string, itemId: string) => Promise<List>
+  /** Remove ListItem */
+  removeItem: (listId: string, itemIdx: number) => Promise<List>
 }
