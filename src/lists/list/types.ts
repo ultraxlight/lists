@@ -1,4 +1,4 @@
-import { Item } from 'storage/src/types.ts'
+import { Item } from '../../../deps.ts'
 
 /** List Object Type */
 export interface List extends Item {

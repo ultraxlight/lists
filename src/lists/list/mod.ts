@@ -1,4 +1,4 @@
-import StorageType from 'storage/src/types.ts'
+import { Storage as StorageType } from '../../../deps.ts'
 import { List as ListType, ListInterface } from './types.ts'
 
 /** Basic List functionality */

@@ -1,5 +1,5 @@
 {
-  "version": "2",
+  "version": "3",
   "remote": {
     "https://deno.land/std@0.168.0/fmt/colors.ts": "03ad95e543d2808bc43c17a3dd29d25b43d0f16287fe562a0be89bf632454a12",
     "https://deno.land/std@0.168.0/testing/_diff.ts": "a23e7fc2b4d8daa3e158fa06856bedf5334ce2a2831e8bf9e509717f455adb2c",
@@ -24,6 +24,8 @@
     "https://denopkg.com/ultraxlight/storage@0.2.0/src/types.ts": "318da6b5141a4907ff38cdd2887af259487962edcba3d9b30ff25b654e90d66f",
     "https://denopkg.com/ultraxlight/storage@0.3.1/implementations/memory.ts": "154134d1258876e7e44e9a3ef38823194dd026262343d0bf51e8aab4b141a641",
     "https://denopkg.com/ultraxlight/storage@0.3.1/src/types.ts": "a88a82ab9b813abdbec63ad981ffd8fb84f72ebea472e69936770f44b77d9052",
+    "https://denopkg.com/ultraxlight/storage@0.3.2/implementations/memory.ts": "154134d1258876e7e44e9a3ef38823194dd026262343d0bf51e8aab4b141a641",
+    "https://denopkg.com/ultraxlight/storage@0.3.2/src/types.ts": "480088219ecdbef0b5c297ee02166e33f27605059b30c55dabcbc2ea14e6f373",
     "https://denopkg.com/ultraxlight/storage@main/src/types.ts": "7d37365576a3636118f43100331aabf8c7a1a1832b18d39d87273155f5493d78",
     "https://esm.sh/ajv@8.6.1": "7aeb7973d277a344d0413e9a778ce0d573ab173fd7008c8f97d11089f7f73974",
     "https://esm.sh/v132/ajv@8.6.1/denonext/ajv.mjs": "1acd66542e2a5345bc5f66591ec9674baf0333f9bab22e045ca1cd518b1a273c",

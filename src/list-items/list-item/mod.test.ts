@@ -3,10 +3,10 @@ import {
   assertRejects,
 } from 'https://deno.land/std@0.168.0/testing/asserts.ts'
 import ListItem from './mod.ts'
-import memoryStorage from 'storage/implementations/memory.ts'
+import { memoryStorage } from '../../../deps.ts'
 
 Deno.test('ListItem', async (t) => {
-  const db = await memoryStorage.init()
+  const db = await memoryStorage()
   const li = ListItem(db)
 
   await t.step('Empty create call throws error', () => {

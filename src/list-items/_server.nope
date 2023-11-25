@@ -7,7 +7,7 @@ import {
   remove,
   update,
 } from 'https://denopkg.com/ultraxlight/storage@0.2.0/src/local-storage.ts'
-import { renderToHtmlString } from './list-item/render/toHtmlString.ts'
+// import { renderToHtmlString } from './list-item/render/toHtmlString.ts'
 
 type HandlerArgs = {
   params: Record<string, string | undefined> | undefined

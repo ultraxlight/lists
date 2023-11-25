@@ -1,4 +1,4 @@
-import StorageType from 'storage/src/types.ts'
+import { Storage as StorageType } from '../../../deps.ts'
 import { ListItem as ListItemType } from './types.ts'
 
 /** Basic ListItem functionality */
