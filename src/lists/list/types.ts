@@ -2,9 +2,9 @@ import { Item } from '../../../deps.ts'
 
 /** List Object Type */
 export interface List extends Item {
-  /** Item title */
+  /** List title */
   title: string
-  /** Items */
+  /** Item IDs */
   items: string[]
 }
 
