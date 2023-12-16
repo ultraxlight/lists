@@ -30,4 +30,4 @@ await List(Storage).addItem(newList.id, newItem.id);
 
 [Interface](https://doc.deno.land/https://raw.githubusercontent.com/ultraxlight/lists/main/src/list-items/list-item/types.ts/~/ListItemInterface)
 
-[Object](https://doc.deno.land/https://raw.githubusercontent.com/ultraxlight/lists/main/src/list-items/list-item/types.ts)
+[Object](https://doc.deno.land/https://raw.githubusercontent.com/ultraxlight/lists/main/src/list-items/list-item/types.ts/~/ListItem)
