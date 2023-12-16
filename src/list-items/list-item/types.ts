@@ -7,3 +7,11 @@ export interface ListItem extends Item {
   /** Whether or not the item is marked done */
   is_done: boolean
 }
+
+export type ListItemInterface = {
+  create: (item: Partial<ListItem> & { title: string }) => Promise<ListItem>
+  get: (id: string) => Promise<ListItem | null>
+  getAll: () => Promise<ListItem[]>
+  update: (id: string, updateObj: Partial<ListItem>) => Promise<ListItem>
+  remove: (id: string) => Promise<ListItem | null>
+}

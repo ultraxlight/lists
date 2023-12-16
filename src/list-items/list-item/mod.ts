@@ -1,8 +1,8 @@
 import { Storage as StorageType } from '../../../deps.ts'
-import { ListItem as ListItemType } from './types.ts'
+import { ListItem as ListItemType, ListItemInterface } from './types.ts'
 
 /** Basic ListItem functionality */
-function ListItem(Storage: StorageType) {
+function ListItem(Storage: StorageType): ListItemInterface {
   return {
     /** Create list item */
     create: (item: Partial<ListItemType> & { title: string }) => {
