@@ -1,34 +1,29 @@
-# lists
+# Lists
 
-There are 3 included interfaces for lists, a deno module, and a server and CLI
-powered by that module.
+2 modules, one for list and one for list items.
 
-Run
+## Usage Example
+```typescript
+import List from "lists/mod.ts";
+import ListItem from "list-items/mod.ts";
 
+// Create List
+const newList = await List(Storage).create('new list');
+
+// Create Item
+const newItem = await ListItem(ListItemStorage).create({ title: 'new item' });
+
+// Add to list
+await List(Storage).addItem(newList.id, newItem.id);
 ```
-deno task start
-```
 
-for full list of commands and options
+## Docs
+#### Lists
+[Module](https://doc.deno.land/https://raw.githubusercontent.com/ultraxlight/lists/main/src/lists/list/mod.ts/~/default)
 
----
+[Interface](https://doc.deno.land/https://raw.githubusercontent.com/ultraxlight/lists/main/src/lists/list/types.ts/~/ListInterface)
 
-## Contents
+#### Items
+[Module](https://doc.deno.land/https://raw.githubusercontent.com/ultraxlight/lists/main/src/list-items/list-item/mod.ts/~/default)
 
-### Specification
-
-See: [Schema](./src/list-item/schema.json)
-
-### Server
-
-### CLI
-
-See: [cli](./src/index.ts)
-
-### Helpers
-
-See: [helpers](./src/list-item/index.ts)
-
-### Tests
-
-See: [tests](./src/list-item/test.ts)
+[Object](https://doc.deno.land/https://raw.githubusercontent.com/ultraxlight/lists/main/src/list-items/list-item/types.ts)
