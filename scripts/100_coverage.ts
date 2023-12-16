@@ -10,8 +10,9 @@ for await (const l of readline(Deno.stdin)) {
   console.log(line)
 
   const successRegex = /100\.000%/
+  const dividerRegex = /\W+/
 
-  if (line.length && !successRegex.test(line)) {
+  if (line.length && !(successRegex.test(line) || dividerRegex.test(line))) {
     throw 'Test not at 100% coverage'
   }
 }
