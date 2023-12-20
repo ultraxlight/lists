@@ -16,6 +16,7 @@ function ListItem(Storage: StorageType): ListItemInterface {
 
       return Storage.create<ListItemType>({ ...dflt, ...item })
     },
+    /** Get single list item */
     get: (id: string) => {
       if (!id) {
         throw new TypeError('Missing ID')
@@ -23,9 +24,11 @@ function ListItem(Storage: StorageType): ListItemInterface {
 
       return Storage.get<ListItemType>(id)
     },
+    /** Get all list items */
     getAll: () => {
       return Storage.getAll<ListItemType>()
     },
+    /** Update a list item */
     update: (id: string, updateObj: Partial<ListItemType>) => {
       if (!id) {
         throw new TypeError('Missing ID')
@@ -37,6 +40,7 @@ function ListItem(Storage: StorageType): ListItemInterface {
 
       return Storage.update<ListItemType>(id, updateObj)
     },
+    /** Remove a list item */
     remove: (id: string) => {
       if (!id) {
         throw new TypeError('Missing ID')

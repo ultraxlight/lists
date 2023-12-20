@@ -13,7 +13,7 @@ const newList = await List(Storage).create('new list');
 // Create Item
 const newItem = await ListItem(ListItemStorage).create({ title: 'new item' });
 
-// Add to list
+// Add Item to List
 await List(Storage).addItem(newList.id, newItem.id);
 ```
 

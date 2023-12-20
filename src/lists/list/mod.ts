@@ -4,12 +4,16 @@ import { List as ListType, ListInterface } from './types.ts'
 /** Basic List functionality */
 function List(Storage: StorageType): ListInterface {
   return {
-    create: (title: string) => {
-      if (!title) {
+    create: (list: Partial<ListType> & { title: string }) => {
+      if (!list || !list.title) {
         return Promise.reject('Missing title')
       }
 
-      return Storage.create<ListType>({ title, items: [] })
+      const dflt = {
+        items: []
+      }
+
+      return Storage.create<ListType>({ ...dflt, ...list })
     },
     get: (id: string) => {
       if (!id) {

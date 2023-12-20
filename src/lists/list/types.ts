@@ -10,7 +10,7 @@ export interface List extends Item {
 
 /** Interact with Lists */
 export type ListInterface = {
-  create: (title: string) => Promise<List>
+  create: (item: Partial<List> & { title: string }) => Promise<List>
   get: (id: string) => Promise<List | null>
   getAll: () => Promise<List[]>
   update: (id: string, updateObj: Partial<List>) => Promise<List>
