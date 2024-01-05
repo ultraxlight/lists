@@ -1,4 +1,4 @@
-export const VERSION = '0.3.6'
+export const VERSION = '0.4.0'
 
 export type {
   Item,
