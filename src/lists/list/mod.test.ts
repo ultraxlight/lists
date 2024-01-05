@@ -15,13 +15,13 @@ Deno.test('List', async (t) => {
   })
 
   await t.step('Create returns an object with a title', async () => {
-    const newItem = await li.create('Mow the lawn')
+    const newItem = await li.create({ title: 'Mow the lawn' })
     assertEquals(typeof newItem.id, 'string')
     assertEquals(newItem.title, 'Mow the lawn')
   })
 
   await t.step('Get can retrieve single', async () => {
-    const newItem = await li.create('Mow the lawn')
+    const newItem = await li.create({ title: 'Mow the lawn' })
     const retrievedItem = await li.get(newItem.id)
     assertEquals(
       newItem.id,
@@ -39,8 +39,8 @@ Deno.test('List', async (t) => {
   })
 
   await t.step('GetAll can retrieve multiple', async () => {
-    const newLi1 = await li.create('Mow the lawn')
-    const newLi2 = await li.create('Mow the lawn 2')
+    const newLi1 = await li.create({ title: 'Mow the lawn' })
+    const newLi2 = await li.create({ title: 'Mow the lawn 2' })
     const retrievedLis = await li.getAll()
     const retrievedLi1 = Array.isArray(retrievedLis) &&
       retrievedLis.find((rLi) => rLi.id === newLi1.id)
@@ -58,7 +58,7 @@ Deno.test('List', async (t) => {
   })
 
   await t.step('Update updates', async () => {
-    const item = await li.create('Mow the lawn 2')
+    const item = await li.create({ title: 'Mow the lawn 2' })
     await li.update(item.id, { title: 'Mow the lawn 3' })
     const retrievedLi = await li.get(item.id)
 
@@ -79,7 +79,7 @@ Deno.test('List', async (t) => {
   })
 
   await t.step('Remove removes', async () => {
-    const newItem = await li.create('Mow the lawn')
+    const newItem = await li.create({ title: 'Mow the lawn' })
     const retrievedItemBeforeRemove = await li.get(newItem.id)
 
     assertEquals(
@@ -99,7 +99,7 @@ Deno.test('List', async (t) => {
   })
 
   await t.step('remove returns removed', async () => {
-    const newItem = await li.create('Mow the lawn')
+    const newItem = await li.create({ title: 'Mow the lawn' })
     const removedItem = await li.remove(newItem.id)
 
     // @ts-ignore: fine if this doesn't work
@@ -107,7 +107,7 @@ Deno.test('List', async (t) => {
   })
 
   await t.step('addItem adds item', async () => {
-    const newList = await li.create('Mow the lawn')
+    const newList = await li.create({ title: 'Mow the lawn' })
     const updatedList = await li.addItem(newList.id, 'new-id')
 
     // @ts-ignore: fine if this doesn't work
@@ -130,7 +130,7 @@ Deno.test('List', async (t) => {
   })
 
   await t.step('removeItem removes item', async () => {
-    const newList = await li.create('Mow the lawn')
+    const newList = await li.create({ title: 'Mow the lawn' })
     const updatedList = await li.addItem(newList.id, 'new-id')
 
     assertEquals(updatedList.items, ['new-id'])

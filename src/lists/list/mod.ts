@@ -10,7 +10,7 @@ function List(Storage: StorageType): ListInterface {
       }
 
       const dflt = {
-        items: []
+        items: [],
       }
 
       return Storage.create<ListType>({ ...dflt, ...list })
